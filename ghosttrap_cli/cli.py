@@ -81,7 +81,7 @@ def _print_setup_snippet(repo):
     token = repo["token"]
 
     print(f"\nadd to your app:\n", file=sys.stderr)
-    print(f"  pip install ghosttrap-sdk\n", file=sys.stderr)
+    print(f"  pip install git+https://github.com/arowley-predictive-power/ghosttrap-sdk.git\n", file=sys.stderr)
     print(f"  import ghosttrap\n", file=sys.stderr)
     print(f"  # option 1: token (recommended)", file=sys.stderr)
     print(f'  ghosttrap.init("{token}")\n', file=sys.stderr)
