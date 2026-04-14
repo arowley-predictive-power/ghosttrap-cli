@@ -130,11 +130,13 @@ def get_gh_token():
         )
         token = result.stdout.strip()
         if result.returncode != 0 or not token:
-            print("error: could not get gh auth token. run 'gh auth login' first.", file=sys.stderr)
+            print("\nghosttrap uses your GitHub identity for authentication.", file=sys.stderr)
+            print("run 'gh auth login' to sign in, then try again.\n", file=sys.stderr)
             sys.exit(1)
         return token
     except FileNotFoundError:
-        print("error: gh cli not found. install it from https://cli.github.com", file=sys.stderr)
+        print("\nghosttrap requires the GitHub CLI for authentication.", file=sys.stderr)
+        print("install it from https://cli.github.com then try again.\n", file=sys.stderr)
         sys.exit(1)
 
 
