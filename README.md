@@ -45,6 +45,13 @@ Your app needs [ghosttrap-sdk](https://github.com/arowley-predictive-power/ghost
 - Errors that arrive while you're offline are replayed on next connect (cursor-based, no duplicates)
 - Local state is stored in `~/.ghosttrap/config.json`
 
+## Requirements
+
+- Python 3.10+
+- [GitHub CLI](https://cli.github.com) (`gh`) — used for authentication during setup
+- [Claude Code](https://claude.ai/code) — the AI agent that fixes your errors
+- macOS or Linux (Windows is untested)
+
 ## Privacy
 
 Error data (tracebacks, exception messages, file paths) is routed through ghosttrap.io. The server is not open source yet — if there's demand for self-hosting, we'll open it up. Your GitHub token is used only during `setup` to verify repo ownership; it's never stored on the server. After setup, all communication uses a repo-specific token that grants access only to that repo's error stream — it cannot access your GitHub account.
