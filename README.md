@@ -2,6 +2,8 @@
 
 The developer-side listener for [ghosttrap](https://ghosttrap.io). Connects errors from remote servers to Claude Code in real time.
 
+Works with any Python app. Django and Celery get deep integration (middleware, app config, task failure hooks). Flask and other frameworks work via Python's logging and excepthook.
+
 ## Setup
 
 Requires the [GitHub CLI](https://cli.github.com) (`gh`) and [Claude Code](https://claude.ai/code).
