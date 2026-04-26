@@ -303,7 +303,13 @@ async def watch(server_url, token):
 async def peek(server_url, token):
     config = _load_config()
     _check_cli_version(config)
-    await _connect_and_handle(server_url, token, config, once=True)
+    while True:
+        try:
+            await _connect_and_handle(server_url, token, config, once=True)
+            return  # got an error, printed it, done
+        except (websockets.ConnectionClosed, ConnectionError, OSError):
+            print("connection lost, reconnecting...", file=sys.stderr)
+            await asyncio.sleep(60)
 
 
 def main():
