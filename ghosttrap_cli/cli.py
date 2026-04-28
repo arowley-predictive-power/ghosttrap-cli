@@ -295,9 +295,9 @@ async def watch(server_url, token):
     while True:
         try:
             await _connect_and_handle(server_url, token, config, once=False)
-        except websockets.ConnectionClosed:
+        except (websockets.ConnectionClosed, websockets.InvalidStatus, ConnectionError, OSError):
             print("connection lost, reconnecting...", file=sys.stderr)
-            await asyncio.sleep(1)
+            await asyncio.sleep(60)
 
 
 async def peek(server_url, token):
@@ -307,7 +307,7 @@ async def peek(server_url, token):
         try:
             await _connect_and_handle(server_url, token, config, once=True)
             return  # got an error, printed it, done
-        except (websockets.ConnectionClosed, ConnectionError, OSError):
+        except (websockets.ConnectionClosed, websockets.InvalidStatus, ConnectionError, OSError):
             print("connection lost, reconnecting...", file=sys.stderr)
             await asyncio.sleep(60)
 
